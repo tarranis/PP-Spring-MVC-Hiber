@@ -4,14 +4,88 @@
 <head>
     <meta charset="UTF-8">
     <title>allUsers</title>
+    <style>
+        .add-user-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #800080; /* Фиолетовый */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .add-user-button:hover {
+            background-color: #6a006a; /* Более темный фиолетовый при наведении */
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 150px;
+            margin-top: 10px;
+        }
+
+        .action-button {
+            padding: 5px 10px;
+            margin-top: 5px;
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .action-button:hover {
+            filter: brightness(90%); /* Уменьшение яркости при наведении */
+        }
+
+        .update-button {
+            background-color: #4CAF50; /* Зеленый */
+            color: white;
+            border: 2px solid #4CAF50; /* Рамка */
+        }
+
+        .delete-button {
+            background-color: #FF0000; /* Красный */
+            color: white;
+            border: 2px solid #FF0000; /* Рамка */
+        }
+    </style>
 </head>
 <body>
 
 <div>
-    <th:block th:each="user : ${users}">
-        <h1 th:text="${user}"></h1>
-    </th:block>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td contenteditable="true" th:text="${user.name}"></td>
+            <td contenteditable="true" th:text="${user.lastName}"></td>
+            <td contenteditable="true" th:text="${user.age}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Кнопки Update и Delete -->
+    <div class="action-buttons">
+        <a class="action-button update-button" href="/user/update">Update</a>
+        <a class="action-button delete-button" href="/user/delete">Delete</a>
+    </div>
+
+    <a class="add-user-button" href="/user/newUser">Add New User</a>
 </div>
 
 </body>
 </html>
+

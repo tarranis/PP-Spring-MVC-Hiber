@@ -40,4 +40,10 @@ public class UserServiceImpl implements UserService{
         userDao.delete(user);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public User findById(Long id) {
+        return userDao.findById(id);
+    }
+
 }
